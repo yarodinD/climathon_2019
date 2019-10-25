@@ -5,17 +5,31 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class WarnLevelDto {
 
-    private String level;
+    private static final String LEVEL_RED = "red";
+    private static final String LEVEL_YELLOW = "yellow";
+    private static final String LEVEL_GREEN = "green";
+    private static final String LEVEL_UNKNOWN = "not_known";
+
+    private Double warnScore;
     private Float longitude;
     private Float latitude;
     private Float radius;
 
-    public String getLevel() {
-        return level;
+    public String getColorCode() {
+        if (warnScore < 3.0) {
+            return LEVEL_GREEN;
+        } else if (warnScore < 7.0) {
+            return LEVEL_YELLOW;
+        }
+        return LEVEL_RED;
     }
 
-    public void setLevel(String level) {
-        this.level = level;
+    public Double getWarnScore() {
+        return this.warnScore;
+    }
+
+    public void setWarnScore(final Double warnScore) {
+        this.warnScore = warnScore;
     }
 
     public Float getLongitude() {
