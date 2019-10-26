@@ -1,6 +1,7 @@
 package de.climathon.extremeweather.mawarning.view.rs.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class WarnLevelDto {
@@ -10,26 +11,17 @@ public class WarnLevelDto {
     private static final String LEVEL_GREEN = "green";
     private static final String LEVEL_UNKNOWN = "not_known";
 
-    private Double warnScore;
     private Float longitude;
     private Float latitude;
     private Float radius;
+    private List<String> warnings;
 
-    public String getColorCode() {
-        if (warnScore < 3.0) {
-            return LEVEL_GREEN;
-        } else if (warnScore < 7.0) {
-            return LEVEL_YELLOW;
-        }
-        return LEVEL_RED;
+    public List<String> getWarnings() {
+        return warnings;
     }
 
-    public Double getWarnScore() {
-        return this.warnScore;
-    }
-
-    public void setWarnScore(final Double warnScore) {
-        this.warnScore = warnScore;
+    public void setWarnings(final List<String> warnings) {
+        this.warnings = warnings;
     }
 
     public Float getLongitude() {

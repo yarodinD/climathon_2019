@@ -1,7 +1,7 @@
 package de.climathon.extremeweather.mawarning.domain.model.staticdata;
 
 
-import de.climathon.extremeweather.mawarning.domain.model.WarnLevel;
+import de.climathon.extremeweather.mawarning.domain.model.HumidityWarnLevel;
 import org.springframework.util.Assert;
 
 public class StaticData {
@@ -24,7 +24,7 @@ public class StaticData {
             {32, 36, 40, 44, 49, 54, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99, 99}
     };
 
-    public static WarnLevel calculateWarnLevelByTempAndHumidity(final Double temperature, final Double humidity) {
+    public static HumidityWarnLevel calculateWarnLevelByTempAndHumidity(final Double temperature, final Double humidity) {
         Assert.notNull(temperature, "Temperature must not be null");
         Assert.notNull(humidity, "Humidity must not be null");
 
@@ -32,30 +32,30 @@ public class StaticData {
         int roundedHumidity = (Double.valueOf(Math.floor(humidity)).intValue() / 5) * 5;
 
         if ((roundedTemp < 27) || (roundedHumidity < 40)) {
-            return WarnLevel.NO_WARNING;
+            return HumidityWarnLevel.NO_WARNING;
         }
 
         if (roundedTemp > 43) {
-            return WarnLevel.HIGH;
+            return HumidityWarnLevel.HIGH;
         }
 
         Integer feltTemp = TEMP_HUMIDITY_LEVELS[roundedHumidity - 40][roundedTemp - 27];
 
         if (feltTemp >= 27 && feltTemp <=32) {
-            return WarnLevel.VERY_LOW;
+            return HumidityWarnLevel.VERY_LOW;
         }
 
         if (feltTemp > 32 && feltTemp <= 40) {
-            return WarnLevel.LOW;
+            return HumidityWarnLevel.LOW;
         }
 
         if (feltTemp > 40 && feltTemp <=54) {
-            return WarnLevel.MEDIUM;
+            return HumidityWarnLevel.MEDIUM;
         }
 
         if (feltTemp > 54) {
-            return WarnLevel.HIGH;
+            return HumidityWarnLevel.HIGH;
         }
-        return WarnLevel.UNKNOWN;
+        return HumidityWarnLevel.UNKNOWN;
     }
 }
