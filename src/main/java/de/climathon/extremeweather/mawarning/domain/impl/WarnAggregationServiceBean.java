@@ -106,7 +106,7 @@ public class WarnAggregationServiceBean implements WarnAggregationService {
 
     private List<String> cleanResultList(final List<String> resultList) {
         List<String> cleaned = resultList.stream().filter(s -> !s.equals(WarningMessages.NO_WARNING)).collect(Collectors.toList());
-        if (cleaned.size() == 0) {
+        if (cleaned.isEmpty()) {
             return List.of(WarningMessages.NO_WARNING);
         }
         return cleaned;
@@ -146,13 +146,16 @@ public class WarnAggregationServiceBean implements WarnAggregationService {
     private String getWarningByHumudityAndTemp(final Double humidity, final Double temperature) {
         HumidityWarnLevel humidityWarnLevel = StaticData.calculateWarnLevelByTempAndHumidity(temperature, humidity);
 
-        return switch(humidityWarnLevel) {
-            case NO_WARNING -> WarningMessages.NO_WARNING;
-            case VERY_LOW -> WarningMessages.HEAT_DANGER_ATTENTION;
-            case LOW -> WarningMessages.HEAT_DANGER_INCREASED;
-            case MEDIUM -> WarningMessages.HEAT_DANGER_MEDIUM;
-            case HIGH -> WarningMessages.HEAT_DANGER_HIGH;
-            default -> "";
+        String result;
+        switch(humidityWarnLevel) {
+            case NO_WARNING: result = WarningMessages.NO_WARNING; break;
+            case VERY_LOW: result = WarningMessages.HEAT_DANGER_ATTENTION; break;
+            case LOW: result = WarningMessages.HEAT_DANGER_INCREASED; break;
+            case MEDIUM: result = WarningMessages.HEAT_DANGER_MEDIUM; break;
+            case HIGH: result = WarningMessages.HEAT_DANGER_HIGH; break;
+            default: throw new IllegalStateException();
         };
+
+        return result;
     }
 }

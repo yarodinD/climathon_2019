@@ -26,12 +26,12 @@ public class MeasurementDataAggregatorBean implements MeasurementDataAggregator 
 
             Double value = provider.getValue();
             switch (provider.getType()) {
-                case TEMP -> measurementData.setTemperature(value);
-                case DEWPOINT -> measurementData.setDewPoint(value);
-                case HUMIDITY -> measurementData.setHumidity(value);
-                case WINDSPEED -> measurementData.setWindspeed(value);
-                case PRECIPITATION -> measurementData.setPrecipitation(value);
-                default -> throw new IllegalStateException("Unexpected value: " + provider.getType());
+                case TEMP: measurementData.setTemperature(value); break;
+                case DEWPOINT: measurementData.setDewPoint(value); break;
+                case HUMIDITY: measurementData.setHumidity(value); break;
+                case WINDSPEED: measurementData.setWindspeed(value); break;
+                case PRECIPITATION: measurementData.setPrecipitation(value); break;
+                default: throw new IllegalStateException("Unexpected value: " + provider.getType());
             }
         }
         return measurementData;

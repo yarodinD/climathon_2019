@@ -6,6 +6,7 @@ import de.climathon.extremeweather.mawarning.domain.model.MeasurementDataType;
 import de.climathon.extremeweather.mawarning.view.rs.LoRaWanReceiver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -21,7 +22,7 @@ public class LoRaWanReceiverBean implements LoRaWanReceiver {
         this.aggregator = aggregator;
     }
 
-    @PostMapping(path = "/v1/lorawan")
+    @PostMapping(path = "/v1/lorawan", consumes = MediaType.ALL_VALUE)
     @ResponseStatus(HttpStatus.OK)
     @Override
     public void retrieveData(@RequestBody DeviceRawData rawData) {
