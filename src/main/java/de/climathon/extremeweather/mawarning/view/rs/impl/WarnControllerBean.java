@@ -5,6 +5,7 @@ import de.climathon.extremeweather.mawarning.view.rs.WarnController;
 import de.climathon.extremeweather.mawarning.view.rs.model.WarnLevelDto;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,6 +23,7 @@ public class WarnControllerBean implements WarnController {
     }
 
     @Override
+    @CrossOrigin
     @GetMapping("/coordinates")
     public WarnLevelDto getWarnLevelByCoordinate(@RequestParam("long") final String longitude,
                                                  @RequestParam("lat") final String latitude) {

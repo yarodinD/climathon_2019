@@ -106,12 +106,8 @@ public class WarnAggregationServiceBean implements WarnAggregationService {
 
 
     private List<String> cleanResultList(final List<String> resultList) {
-        List<String> cleaned = resultList.stream().filter(Predicate.not(s -> s.equals(WarningMessages.NO_WARNING)))
+        return resultList.stream().filter(Predicate.not(s -> s.equals(WarningMessages.NO_WARNING)))
                 .collect(Collectors.toList());
-        if (cleaned.isEmpty()) {
-            return List.of(WarningMessages.NO_WARNING);
-        }
-        return cleaned;
     }
 
     private String getWarningsLowHumidity(final Double temperature, final Double precipitation) {
