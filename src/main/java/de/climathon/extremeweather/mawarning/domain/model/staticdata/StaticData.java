@@ -8,7 +8,7 @@ public class StaticData {
 
     // temperature to humidity relations; values indicate felt temperatures;
     // danger levels are defined by ranges on those values
-    public static final Integer[][] TEMP_HUMIDITY_LEVELS = {
+    static final Integer[][] TEMP_HUMIDITY_LEVELS = {
             {27, 28, 29, 30, 31, 32, 34, 35, 37, 39, 41, 43, 46, 48, 51, 54, 57},
             {27, 28, 29, 30, 32, 33, 35, 37, 39, 41, 43, 46, 49, 51, 54, 57, 99},
             {27, 28, 30, 31, 33, 34, 36, 38, 41, 43, 46, 49, 52, 55, 58, 99, 99},
@@ -39,7 +39,9 @@ public class StaticData {
             return HumidityWarnLevel.HIGH;
         }
 
-        Integer feltTemp = TEMP_HUMIDITY_LEVELS[roundedHumidity - 40][roundedTemp - 27];
+        int humditiyIndex = (roundedHumidity - 40) / 5;
+        int tempIndex = roundedTemp - 27;
+        Integer feltTemp = TEMP_HUMIDITY_LEVELS[humditiyIndex][tempIndex];
 
         if (feltTemp >= 27 && feltTemp <=32) {
             return HumidityWarnLevel.VERY_LOW;
