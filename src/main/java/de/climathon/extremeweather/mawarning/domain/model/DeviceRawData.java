@@ -2,6 +2,7 @@ package de.climathon.extremeweather.mawarning.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.StringJoiner;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class DeviceRawData {
@@ -92,5 +93,19 @@ public class DeviceRawData {
 
     public void setPrecipitation(MeasurementValue precipitation) {
         this.precipitation = precipitation;
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", DeviceRawData.class.getSimpleName() + "[", "]")
+                .add("deviceId='" + deviceId + "'")
+                .add("protocolVersion='" + protocolVersion + "'")
+                .add("battery=" + battery)
+                .add("temperature=" + temperature)
+                .add("solarRadiation=" + solarRadiation)
+                .add("precipitation=" + precipitation)
+                .add("humidity=" + humidity)
+                .add("windSpeed=" + windSpeed)
+                .toString();
     }
 }

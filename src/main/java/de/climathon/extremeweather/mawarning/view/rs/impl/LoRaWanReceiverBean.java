@@ -4,6 +4,8 @@ import de.climathon.extremeweather.mawarning.domain.MeasurementDataAggregator;
 import de.climathon.extremeweather.mawarning.domain.model.DeviceRawData;
 import de.climathon.extremeweather.mawarning.domain.model.MeasurementDataType;
 import de.climathon.extremeweather.mawarning.view.rs.LoRaWanReceiver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class LoRaWanReceiverBean implements LoRaWanReceiver {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(LoRaWanReceiverBean.class);
 
     private final MeasurementDataAggregator aggregator;
 
@@ -26,6 +30,7 @@ public class LoRaWanReceiverBean implements LoRaWanReceiver {
     @ResponseStatus(HttpStatus.OK)
     @Override
     public void retrieveData(@RequestBody DeviceRawData rawData) {
+        LOGGER.debug("Got new data: {}", rawData);
         if (rawData.getTemperature() != null) {
             aggregator.addData(MeasurementDataType.TEMP, rawData.getTemperature().getValue());
         }
