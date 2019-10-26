@@ -24,6 +24,17 @@ public class DeviceRawData {
     @JsonProperty("Precipitation")
     private MeasurementValue precipitation;
 
+    @JsonProperty("Air humidity")
+    private MeasurementValue humidity;
+
+    public MeasurementValue getHumidity() {
+        return humidity;
+    }
+
+    public void setHumidity(MeasurementValue humidity) {
+        this.humidity = humidity;
+    }
+
     public String getDeviceId() {
         return deviceId;
     }

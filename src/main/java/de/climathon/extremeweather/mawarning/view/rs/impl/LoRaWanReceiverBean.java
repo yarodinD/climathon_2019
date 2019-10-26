@@ -33,5 +33,10 @@ public class LoRaWanReceiverBean implements LoRaWanReceiver {
         if (rawData.getPrecipitation() != null) {
             aggregator.addData(MeasurementDataType.PRECIPITATION, rawData.getPrecipitation().getValue());
         }
+
+        if (rawData.getHumidity() != null) {
+            aggregator.addData(MeasurementDataType.HUMIDITY, rawData.getHumidity().getValue());
+        }
+
     }
 }
