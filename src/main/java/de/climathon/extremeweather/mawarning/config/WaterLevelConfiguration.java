@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 public class WaterLevelConfiguration {
 
     private String baseUri;
+    private String WaterLevelMeasurementStation;
 
     public String getBaseUri() {
         return baseUri;
@@ -15,5 +16,13 @@ public class WaterLevelConfiguration {
 
     public void setBaseUri(String baseUri) {
         this.baseUri = baseUri;
+    }
+
+    public String getWaterLevelMeasurementStation() {
+        return WaterLevelMeasurementStation;
+    }
+
+    public void setWaterLevelMeasurementStation(String waterLevelMeasurementStation) {
+        WaterLevelMeasurementStation = waterLevelMeasurementStation;
     }
 }

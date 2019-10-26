@@ -2,6 +2,7 @@
 sensors:
   waterlevel:
     baseUri: https://www.pegelonline.wsv.de/webservices/rest-api/v2/
+    WaterLevelMeasurementStation: 57090802-c51a-4d09-8340-b4453cd0e1f5   # Mannheim
 
 logging:
   level:

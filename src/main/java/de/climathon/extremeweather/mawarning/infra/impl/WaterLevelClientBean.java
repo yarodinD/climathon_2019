@@ -11,16 +11,18 @@ import org.springframework.web.client.RestTemplate;
 @Component
 public class WaterLevelClientBean  implements WaterLevelClient {
 
-    private RestTemplate restTemplate;
+    private final RestTemplate restTemplate;
+    private final String stationId;
 
     @Autowired
     public WaterLevelClientBean(final RestTemplateBuilder restTemplateBuilder,
                                 final WaterLevelConfiguration waterLevelConfiguration) {
         this.restTemplate = restTemplateBuilder.rootUri(waterLevelConfiguration.getBaseUri()).build();
+        this.stationId = waterLevelConfiguration.getWaterLevelMeasurementStation();
     }
 
     @Override
     public WaterLevelData getWaterLevelForRhine() {
-        return restTemplate.getForObject("/stations/MANNHEIM/W/currentmeasurement.json", WaterLevelData.class);
+        return restTemplate.getForObject("/stations/{stationId}/W/currentmeasurement.json", WaterLevelData.class, stationId);
     }
 }
