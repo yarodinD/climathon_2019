@@ -38,5 +38,8 @@ public class LoRaWanReceiverBean implements LoRaWanReceiver {
             aggregator.addData(MeasurementDataType.HUMIDITY, rawData.getHumidity().getValue());
         }
 
+        if (rawData.getWindSpeed() != null) {
+            aggregator.addData(MeasurementDataType.WINDSPEED, rawData.getWindSpeed().getValue());
+        }
     }
 }

@@ -27,6 +27,17 @@ public class DeviceRawData {
     @JsonProperty("Air humidity")
     private MeasurementValue humidity;
 
+    @JsonProperty("Wind speed")
+    private MeasurementValue windSpeed;
+
+    public MeasurementValue getWindSpeed() {
+        return windSpeed;
+    }
+
+    public void setWindSpeed(MeasurementValue windSpeed) {
+        this.windSpeed = windSpeed;
+    }
+
     public MeasurementValue getHumidity() {
         return humidity;
     }
