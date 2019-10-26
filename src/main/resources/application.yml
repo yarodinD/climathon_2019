@@ -1,0 +1,8 @@
+
+sensors:
+  waterlevel:
+    baseUri: https://www.pegelonline.wsv.de/webservices/rest-api/v2/
+
+logging:
+  level:
+    de.climathon: debug
