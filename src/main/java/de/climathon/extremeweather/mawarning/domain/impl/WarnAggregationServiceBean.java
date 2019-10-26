@@ -9,6 +9,7 @@ import de.climathon.extremeweather.mawarning.view.rs.model.WarnLevelDto;
 import de.climathon.extremeweather.mawarning.view.rs.model.WarningMessages;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -58,9 +59,9 @@ public class WarnAggregationServiceBean implements WarnAggregationService {
             resultList.add(checkWindspeed(windspeed, temperature));
         }
 
-        cleanResultList(resultList);
+        List<String> cleanedList = cleanResultList(resultList);
 
-        result.setWarnings(resultList);
+        result.setWarnings(cleanedList);
         return result;
     }
 
@@ -105,7 +106,8 @@ public class WarnAggregationServiceBean implements WarnAggregationService {
 
 
     private List<String> cleanResultList(final List<String> resultList) {
-        List<String> cleaned = resultList.stream().filter(s -> !s.equals(WarningMessages.NO_WARNING)).collect(Collectors.toList());
+        List<String> cleaned = resultList.stream().filter(Predicate.not(s -> s.equals(WarningMessages.NO_WARNING)))
+                .collect(Collectors.toList());
         if (cleaned.isEmpty()) {
             return List.of(WarningMessages.NO_WARNING);
         }

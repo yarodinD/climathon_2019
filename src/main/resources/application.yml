@@ -7,5 +7,5 @@ sensors:
 logging:
   level:
     de.climathon: debug
-    org.springframework.web: debug
+    org.springframework.web: INFO
     org.springframework.web.socket: debug

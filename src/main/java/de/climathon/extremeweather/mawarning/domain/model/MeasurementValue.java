@@ -1,6 +1,7 @@
 package de.climathon.extremeweather.mawarning.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.util.StringJoiner;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MeasurementValue {
@@ -22,5 +23,13 @@ public class MeasurementValue {
 
     public void setUnit(String unit) {
         this.unit = unit;
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", MeasurementValue.class.getSimpleName() + "[", "]")
+                .add("value=" + value)
+                .add("unit='" + unit + "'")
+                .toString();
     }
 }
