@@ -7,6 +7,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class TemperatureDataProvider implements MeasurementDataProvider {
 
+    private static Double CACHED_VALUE;
+
     @Override
     public MeasurementDataType getType() {
         return MeasurementDataType.TEMP;
@@ -14,6 +16,11 @@ public class TemperatureDataProvider implements MeasurementDataProvider {
 
     @Override
     public Double getValue() {
-        return null;
+        return CACHED_VALUE;
+    }
+
+    @Override
+    public void setValue(Double value) {
+        CACHED_VALUE = value;
     }
 }

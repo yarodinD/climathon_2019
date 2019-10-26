@@ -113,6 +113,10 @@ public class WarnAggregationServiceBean implements WarnAggregationService {
     }
 
     private String getWarningsLowHumidity(final Double temperature, final Double precipitation) {
+        if (temperature == null) {
+            return WarningMessages.NO_WARNING;
+        }
+
         String result = WarningMessages.NO_WARNING;
         if (temperature < -10) {
             result = WarningMessages.COLD_EXTREME;

@@ -3,7 +3,9 @@ package de.climathon.extremeweather.mawarning.domain.impl;
 import de.climathon.extremeweather.mawarning.domain.MeasurementDataAggregator;
 import de.climathon.extremeweather.mawarning.domain.MeasurementDataProvider;
 import de.climathon.extremeweather.mawarning.domain.model.MeasurementData;
+import de.climathon.extremeweather.mawarning.domain.model.MeasurementDataType;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,5 +35,13 @@ public class MeasurementDataAggregatorBean implements MeasurementDataAggregator 
             }
         }
         return measurementData;
+    }
+
+    @Override
+    public void addData(MeasurementDataType type, Double value) {
+        Optional<MeasurementDataProvider> provider = providers.stream().filter(providers -> providers.getType().equals(type)).findFirst();
+        if (provider.isPresent()) {
+            provider.get().setValue(value);
+        }
     }
 }

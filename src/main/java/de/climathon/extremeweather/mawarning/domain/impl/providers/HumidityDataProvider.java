@@ -7,6 +7,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class HumidityDataProvider implements MeasurementDataProvider {
 
+    private static Double CACHE_VALUE;
+
     @Override
     public MeasurementDataType getType() {
         return MeasurementDataType.HUMIDITY;
@@ -14,6 +16,11 @@ public class HumidityDataProvider implements MeasurementDataProvider {
 
     @Override
     public Double getValue() {
-        return null;
+        return CACHE_VALUE;
+    }
+
+    @Override
+    public void setValue(Double value) {
+        CACHE_VALUE = value;
     }
 }

@@ -7,4 +7,5 @@ public interface MeasurementDataProvider {
     MeasurementDataType getType();
 
     Double getValue();
+    void setValue(Double value);
 }
