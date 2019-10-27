@@ -45,6 +45,14 @@ public class WarnAggregationServiceBean implements WarnAggregationService {
         Double dewPoint = measurements.getDewPoint();
         Double windspeed = measurements.getWindspeed();
 
+        MeasurementData data = new MeasurementData();
+        data.setPrecipitation(precipitation);
+        data.setWindspeed(windspeed);
+        data.setHumidity(humidity);
+        data.setTemperature(temperature);
+        data.setDewPoint(dewPoint);
+        result.setMeasurements(data);
+
         if ((humidity == null) || (humidity < 40)) {
             resultList.add(getWarningsLowHumidity(temperature, precipitation));
         } else {

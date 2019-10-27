@@ -1,6 +1,7 @@
 package de.climathon.extremeweather.mawarning.view.rs.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import de.climathon.extremeweather.mawarning.domain.model.MeasurementData;
 import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -15,6 +16,7 @@ public class WarnLevelDto {
     private Float latitude;
     private Float radius;
     private List<String> warnings;
+    private MeasurementData measurements;
 
     public List<String> getWarnings() {
         return warnings;
@@ -46,5 +48,13 @@ public class WarnLevelDto {
 
     public void setRadius(Float radius) {
         this.radius = radius;
+    }
+
+    public MeasurementData getMeasurements() {
+        return measurements;
+    }
+
+    public void setMeasurements(MeasurementData measurements) {
+        this.measurements = measurements;
     }
 }
